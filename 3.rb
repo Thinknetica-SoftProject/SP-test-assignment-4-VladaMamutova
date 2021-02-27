@@ -10,4 +10,26 @@
 #
 ## Решение:
 
+lines = File.readlines("data/3.txt")
 
+result = 0
+lines.each do |line|
+	numbers = line.split(/\t/).map(&:to_i) # = .map { |val| val.to_i }
+	if (numbers.size > 0)
+		min = numbers[0]
+		max = numbers[0]
+		for number in numbers
+			if min > number
+				min = number
+			elsif max < number
+				max = number
+			end
+		end
+		result += max - min
+	end
+
+	# Можно и встроенное решение использовать
+	# result += numbers.max - numbers.min
+end
+
+puts result

@@ -16,6 +16,15 @@
 #
 ## Решение:
 
+instructions = File.read("data/1.txt").chomp
 
+floor = 0
+instructions.each_char do |char|
+	if char == '('
+		floor += 1
+	elsif char == ')'
+		floor -= 1
+	end
+end
 
-
+puts floor

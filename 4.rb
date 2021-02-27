@@ -16,4 +16,29 @@
 #
 ## Решение:
 
+lines = File.readlines("data/4.txt")
 
+result = 0
+lines.each do |line|
+	dimens = "2x3x4".split('x').map(&:to_i)
+	min_square = 0
+	if dimens.size == 3
+		for i in 0..dimens.size - 1
+			if i < dimens.size - 1
+				square = dimens[i] * dimens[i + 1]
+			else
+				square = dimens[dimens.size - 1] * dimens[0]
+			end
+
+			if min_square == 0 || min_square > square
+				min_square = square
+			end
+
+			result += 2 * square
+		end
+
+		result += min_square
+	end
+end
+
+puts result
