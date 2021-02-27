@@ -20,7 +20,7 @@ lines = File.readlines("data/4.txt")
 
 result = 0
 lines.each do |line|
-	dimens = "2x3x4".split('x').map(&:to_i)
+	dimens = line.split('x').map(&:to_i)
 	min_square = 0
 	if dimens.size == 3
 		for i in 0..dimens.size - 1

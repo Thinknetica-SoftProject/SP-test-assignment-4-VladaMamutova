@@ -20,20 +20,18 @@ require 'digest'
 
 input = gets.chomp
 
-digest = Digest::MD5.hexdigest input
-if digest[0,5] == "00000"
-	number = 0
-	found = false
-	for i in 1..input.length
-		if !found
-			unless ('0'..'9').include?(input[-i])
-				if (i > 1)
-					number = input[input.length - i + 1, i - 1]
-				end
-				found = true
-			end
-		end
+found = false
+number = 1
+while !found
+	str = input + number.to_s
+	digest = Digest::MD5.hexdigest str
+
+	if digest[0,5] == "00000"
+		found = true
+	else
+		number += 1
 	end
 
-	puts number if found
 end
+
+puts number
